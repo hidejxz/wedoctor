@@ -1,1 +1,68 @@
-<h1>hello</h1>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>扇形图</title>
+  <style>
+    /* 样式 */
+  </style>
+</head>
+<body>
+  <div id="chart"></div>
+
+  <script src="https://d3js.org/d3.v6.min.js"></script>
+  <script>
+    // 数据
+    const data = [
+      { label: "部分1", value: 30 },
+      { label: "部分2", value: 20 },
+      { label: "部分3", value: 50 }
+    ];
+
+    // 创建SVG元素
+    const svg = d3.select("#chart")
+      .append("svg")
+      .attr("width", 400)
+      .attr("height", 400);
+
+    // 创建扇形图
+    const pie = d3.pie()
+      .value(d => d.value);
+
+    const arc = d3.arc()
+      .innerRadius(0)
+      .outerRadius(100);
+
+    const arcs = svg.selectAll("arc")
+      .data(pie(data))
+      .enter()
+      .append("g")
+      .attr("class", "arc");
+
+    arcs.append("path")
+      .attr("d", arc)
+      .attr("fill", (d, i) => {
+        // 根据索引选择颜色
+        const colors = ["#ff0000", "#00ff00", "#0000ff"];
+        return colors[i];
+      })
+      .on("mouseover", (d, i) => {
+        // 鼠标悬停事件处理
+        const tooltip = d3.select("#chart")
+          .append("div")
+          .attr("class", "tooltip")
+          .style("left", d3.event.pageX + "px")
+          .style("top", d3.event.pageY + "px");
+
+        tooltip.append("div")
+          .text(data[i].label);
+
+        tooltip.append("div")
+          .text(data[i].value);
+      })
+      .on("mouseout", () => {
+        // 鼠标移出事件处理
+        d3.select(".tooltip").remove();
+      });
+  </script>
+</body>
+</html>
