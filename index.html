@@ -28,32 +28,51 @@
   <script src="https://cdn.anychart.com/releases/8.12.0/js/anychart-ui.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4"></script>
   <script type="text/javascript">anychart.onDocumentReady(function () {
 
-    // create data
     var data = [
-      {name: "Italian", children: [
+      {name: "健康分", normal: {fill: "#FFFFFF"}, children: [
         {name: "Consonants", children: [
           {name: "m"}, {name: "n"}, {name: "ɲ"},
           {name: "p"}, {name: "b"}, {name: "t"},
-          {name: "d"}, {name: "k"}, {name: "g"},
-          {name: "t͡s"}, {name: "d͡z"}, {name: "t͡ʃ"},
-          {name: "d͡ʒ"}, {name: "f"}, {name: "v"},
-          {name: "s"}, {name: "z"}, {name: "ʃ"},
-          {name: "j"}, {name: "w"}, {name: "l"},
-          {name: "ʎ"}, {name: "r"}, {name: "ɾ"}
-        ]},
+        ],value: 25},
         {name: "Vowels", children: [
           {name: "i"}, {name: "u"}, {name: "e"},
           {name: "o"}, {name: "ɛ"}, {name: "ɔ"},
-          {name: "a"}
-        ]} 
-      ]}
+        ],value: 25}, 
+        {name: "Vowels", children: [
+          {name: "i"}, {name: "u"}, {name: "e"},
+        ],value: 25}, 
+        {name: "Vowels", children: [
+          {name: "i"}, {name: "u"}, {name: "e"},
+          {name: "o"}, {name: "ɛ"}, {name: "ɔ"},
+        ],value: 25}, 
+      ],value: 200}
     ];
 
     // create a chart and set the data
     var chart = anychart.sunburst(data, "as-tree");
 
+    chart.innerRadius(100);
+
+    var label = anychart.standalones.label();
+    label.text("Company Structure");
+    label.width("100%");
+    label.height("100%");
+    label.fontColor("#000000");
+    label.fontSize(12);
+    label.fontWeight(600);
+    label.hAlign("center");
+    label.vAlign("middle");
+
+    // set the center content
+    chart.center().content(label);
+
+    chart.tooltip().title("Information");
+    chart.tooltip().format("Manager: {%categoryName} \n{%seriesName}: ${%value}");
+
     // set the calculation mode
-    chart.calculationMode("ordinal-from-leaves");
+    chart.calculationMode("parent-dependent");
+
+
 
     // set the chart title
     chart.title().useHtml(true);
