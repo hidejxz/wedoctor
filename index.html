@@ -1,68 +1,71 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>扇形图</title>
-  <style>
-    /* 样式 */
-  </style>
-</head>
-<body>
-  <div id="chart"></div>
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta content="IE=edge" http-equiv="X-UA-Compatible">
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <title>BCT Sunburst Chart 04</title>
+  <link href="https://playground.anychart.com/docs/samples/BCT_Sunburst_Chart_04/iframe" rel="canonical">
+  <meta content="Sunburst Chart" name="keywords">
+  <meta content="AnyChart - JavaScript Charts designed to be embedded and integrated" name="description">
+  <!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+  <link href="https://cdn.anychart.com/releases/8.12.0/css/anychart-ui.min.css?hcode=a0c21fc77e1449cc86299c5faa067dc4" rel="stylesheet" type="text/css">
+  <style>html, body, #container {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}</style>
+ </head>
+ <body>
+  <div id="container"></div>
+  <script src="https://cdn.anychart.com/releases/8.12.0/js/anychart-base.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4"></script>
+  <script src="https://cdn.anychart.com/releases/8.12.0/js/anychart-sunburst.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4"></script>
+  <script src="https://cdn.anychart.com/releases/8.12.0/js/anychart-exports.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4"></script>
+  <script src="https://cdn.anychart.com/releases/8.12.0/js/anychart-ui.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4"></script>
+  <script type="text/javascript">anychart.onDocumentReady(function () {
 
-  <script src="https://d3js.org/d3.v6.min.js"></script>
-  <script>
-    // 数据
-    const data = [
-      { label: "部分1", value: 30 },
-      { label: "部分2", value: 20 },
-      { label: "部分3", value: 50 }
+    // create data
+    var data = [
+      {name: "Italian", children: [
+        {name: "Consonants", children: [
+          {name: "m"}, {name: "n"}, {name: "ɲ"},
+          {name: "p"}, {name: "b"}, {name: "t"},
+          {name: "d"}, {name: "k"}, {name: "g"},
+          {name: "t͡s"}, {name: "d͡z"}, {name: "t͡ʃ"},
+          {name: "d͡ʒ"}, {name: "f"}, {name: "v"},
+          {name: "s"}, {name: "z"}, {name: "ʃ"},
+          {name: "j"}, {name: "w"}, {name: "l"},
+          {name: "ʎ"}, {name: "r"}, {name: "ɾ"}
+        ]},
+        {name: "Vowels", children: [
+          {name: "i"}, {name: "u"}, {name: "e"},
+          {name: "o"}, {name: "ɛ"}, {name: "ɔ"},
+          {name: "a"}
+        ]} 
+      ]}
     ];
 
-    // 创建SVG元素
-    const svg = d3.select("#chart")
-      .append("svg")
-      .attr("width", 400)
-      .attr("height", 400);
+    // create a chart and set the data
+    var chart = anychart.sunburst(data, "as-tree");
 
-    // 创建扇形图
-    const pie = d3.pie()
-      .value(d => d.value);
+    // set the calculation mode
+    chart.calculationMode("ordinal-from-leaves");
 
-    const arc = d3.arc()
-      .innerRadius(0)
-      .outerRadius(100);
+    // set the chart title
+    chart.title().useHtml(true);
+    chart.title("Sunburst: Calculation Mode (ordinal-from-leaves)<br><br>" +
+        "<span style='font-size:12; font-style:italic'>" +
+        "Phonemic System</span>");
 
-    const arcs = svg.selectAll("arc")
-      .data(pie(data))
-      .enter()
-      .append("g")
-      .attr("class", "arc");
+    // set the container id
+    chart.container("container");
 
-    arcs.append("path")
-      .attr("d", arc)
-      .attr("fill", (d, i) => {
-        // 根据索引选择颜色
-        const colors = ["#ff0000", "#00ff00", "#0000ff"];
-        return colors[i];
-      })
-      .on("mouseover", (d, i) => {
-        // 鼠标悬停事件处理
-        const tooltip = d3.select("#chart")
-          .append("div")
-          .attr("class", "tooltip")
-          .style("left", d3.event.pageX + "px")
-          .style("top", d3.event.pageY + "px");
-
-        tooltip.append("div")
-          .text(data[i].label);
-
-        tooltip.append("div")
-          .text(data[i].value);
-      })
-      .on("mouseout", () => {
-        // 鼠标移出事件处理
-        d3.select(".tooltip").remove();
-      });
-  </script>
-</body>
+    // initiate drawing the chart
+    chart.draw();
+});</script>
+ </body>
 </html>
