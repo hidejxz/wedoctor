@@ -18,10 +18,12 @@
     height: 100%;
     margin: 0;
     padding: 0;
+    transform: scale(1.2);
 }
     body {
       margin-left: -100px; /* 将整体内容向左移动 50 像素 */
-      transform: scale(1.5); /* 将整体内容放大 1.2 倍 */
+      /* transform: scale(1.5);  将整体内容放大 1.2 倍 */
+      /* height: 80%;  设置页面高度为视口高度的 50% */
     }
  </style>
  </head>
@@ -68,7 +70,6 @@
 
     // create a chart and set the data
     var chart = anychart.sunburst(data, "as-tree");
-
     // set the center content
 
     chart.level(0).thickness("10%");
