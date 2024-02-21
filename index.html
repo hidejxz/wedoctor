@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta content="IE=edge" http-equiv="X-UA-Compatible">
   <meta content="width=device-width, initial-scale=1" name="viewport">
-  <title>微医用户健康分标签系统</title>
+  <title>微医用户健康雷达分标签系统</title>
   <link href="https://playground.anychart.com/docs/samples/BCT_Sunburst_Chart_04/iframe" rel="canonical">
   <meta content="Sunburst Chart" name="keywords">
   <meta content="AnyChart - JavaScript Charts designed to be embedded and integrated" name="description">
@@ -18,7 +18,12 @@
     height: 100%;
     margin: 0;
     padding: 0;
-}</style>
+}
+    body {
+      margin-left: -100px; /* 将整体内容向左移动 50 像素 */
+      transform: scale(1.5); /* 将整体内容放大 1.2 倍 */
+    }
+ </style>
  </head>
  <body>
   <div id="container"></div>
@@ -29,36 +34,36 @@
   <script type="text/javascript">anychart.onDocumentReady(function () {
 
     var data = [
-      {name: "健康分", normal: {fill: "#FFFFFF"}, children: [
-        {name: "人口属性", normal: {fill: "#016dcc"}, children: [
-          {name: "基本属性", value: 10, normal: {fill: "#4b89d3"}, custom_field: "用户年龄（年龄分层）、性别"}, 
-          {name: "地区属性", value: 10, normal: {fill: "#016dcc"}, custom_field: "省份、城市"},
-          {name: "婚育属性", value: 10, normal: {fill: "#bdcfeb"}, custom_field: "通过账号中是否绑定儿童预估"},
+      {name: "健康雷达分", normal: {fill: "#FFFFFF"}, children: [
+        {name: "人口属性", normal: {fill: "#2e75b6"}, children: [
+          {name: "基本属性", value: 10, normal: {fill: "#2e75b6"}, custom_field: "用户年龄（年龄分层）、性别"}, 
+          {name: "地区属性", value: 10, normal: {fill: "#2e75b6"}, custom_field: "省份、城市"},
+          {name: "婚育属性", value: 10, normal: {fill: "#2e75b6"}, custom_field: "通过账号中是否绑定儿童预估"},
         ],value: 30},
-        {name: "健康属性", normal: {fill: "#016dcc"}, children: [
-          {name: "生命体征", value: 10, normal: {fill: "#dce4f2"}, custom_field: "用户身高、体重、血压等健康信息"}, 
-          {name: "疾病属性", value: 10, normal: {fill: "#dce4f2"}, custom_field: "用户诊断疾病、现病史、既往病史"},
-          {name: "健康习惯", value: 10, normal: {fill: "#dce4f2"}, custom_field: "用户抽烟、喝酒等与健康相关的生活习惯"},
+        {name: "健康属性", normal: {fill: "#0180cc"}, children: [
+          {name: "生命体征", value: 10, normal: {fill: "#0180cc"}, custom_field: "用户身高、体重、血压等健康信息"}, 
+          {name: "疾病属性", value: 10, normal: {fill: "#0180cc"}, custom_field: "用户诊断疾病、现病史、既往病史"},
+          {name: "健康习惯", value: 10, normal: {fill: "#0180cc"}, custom_field: "用户抽烟、喝酒等与健康相关的生活习惯"},
         ],value: 30}, 
-        {name: "活跃行为", normal: {fill: "#016dcc"}, children: [
-          {name: "注册属性", value: 6, normal: {fill: "#016dcc"}, custom_field: "用户注册行为标签，注册来源，注册渠道，注册时间等"}, 
-          {name: "访问属性", value: 6, normal: {fill: "#bdcfeb"}, custom_field: "用户浏览、搜索等行为标签"},
-          {name: "业务属性", value: 6, normal: {fill: "#76a2db"}, custom_field: "用户问诊、挂号等医疗行为标签"},
-          {name: "关注属性", value: 6, normal: {fill: "#bdcfeb"}, custom_field: "用户关注行为标签"},
-          {name: "评论属性", value: 6, normal: {fill: "#dce4f2"}, custom_field: "用户评论、点赞等行为标签"},
+        {name: "活跃行为", normal: {fill: "#009b92"}, children: [
+          {name: "注册属性", value: 10, normal: {fill: "#009b92"}, custom_field: "用户注册行为标签，注册来源，注册渠道，注册时间等"}, 
+          {name: "访问属性", value: 10, normal: {fill: "#009b92"}, custom_field: "用户浏览、搜索等行为标签"},
+          {name: "业务属性", value: 10, normal: {fill: "#009b92"}, custom_field: "用户问诊、挂号等医疗行为标签"},
+          {name: "关注属性", value: 10, normal: {fill: "#009b92"}, custom_field: "用户关注行为标签"},
+          {name: "评论属性", value: 10, normal: {fill: "#009b92"}, custom_field: "用户评论、点赞等行为标签"},
+        ],value: 50}, 
+        {name: "消费行为", normal: {fill: "#49bd9a"}, children: [
+          {name: "会员消费属性", value: 10, normal: {fill: "#49bd9a"}, custom_field: "会员消费频次，消费周期等"}, 
+          {name: "问诊消费属性", value: 10, normal: {fill: "#49bd9a"}, custom_field: "问诊消费频次，平均价格，消费习惯，订单总量等"},
+          {name: "挂号消费属性", value: 10, normal: {fill: "#49bd9a"}, custom_field: "挂号消费频次，平均价格，消费习惯，订单总量等"},
         ],value: 30}, 
-        {name: "消费行为", normal: {fill: "#016dcc"}, children: [
-          {name: "会员消费属性", value: 10, normal: {fill: "#dce4f2"}, custom_field: "会员消费频次，消费周期等"}, 
-          {name: "问诊消费属性", value: 10, normal: {fill: "#bdcfeb"}, custom_field: "问诊消费频次，平均价格，消费习惯，订单总量等"},
-          {name: "挂号消费属性", value: 10, normal: {fill: "#76a2db"}, custom_field: "挂号消费频次，平均价格，消费习惯，订单总量等"},
-        ],value: 30}, 
-        {name: "医疗服务偏好", normal: {fill: "#016dcc"}, children: [
-          {name: "就医服务偏好", value: 30, normal: {fill: "#76a2db"}, custom_field: "对问诊、挂号就医服务的个人偏好"}, 
-        ],value: 30}, 
-        {name: "用户关系", normal: {fill: "#016dcc"}, children: [
-          {name: "社交关系", value: 30, normal: {fill: "#9ab9e4"}, custom_field: "通过账号关系抽象出<patient_id,user_id>间社交关系"}, 
-        ],value: 30}, 
-      ],value: 360}
+        {name: "医疗服务偏好", normal: {fill: "#51bd00"}, children: [
+          {name: "就医服务偏好", value: 10, normal: {fill: "#51bd00"}, custom_field: "对问诊、挂号就医服务的个人偏好"}, 
+        ],value: 10}, 
+        {name: "用户关系", normal: {fill: "#538235"}, children: [
+          {name: "社交关系", value: 10, normal: {fill: "#538235"}, custom_field: "通过账号关系抽象出<patient_id,user_id>间社交关系"}, 
+        ],value: 10}, 
+      ],value: 320}
     ];
 
     // create a chart and set the data
@@ -69,7 +74,7 @@
     chart.level(0).thickness("10%");
     chart.innerRadius(30);
     var label = anychart.standalones.label();
-    label.text("健康分");
+    label.text("健康雷达分");
     label.width("100%");
     label.height("100%");
     label.fontColor("#000000");
@@ -86,8 +91,12 @@
     // configure labels
     chart.labels().useHtml(true);
     chart.labels().position("radial");
-    chart.level(1).labels().format("<span style='font-weight:bold'>{%name}</span>");
+    chart.level(1).labels().format("<span style='font-weight:bold;font-size: 11px;'>{%name}</span>");
+    chart.level(2).labels().format("<span style='font-size: 9px;'>{%name}</span>");
 
+    // var labels = series.labels();
+    // labels.enabled(true);
+    // labels.fontSize(10);
     // set the calculation mode
     chart.calculationMode("parent-dependent");
 
