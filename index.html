@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta content="IE=edge" http-equiv="X-UA-Compatible">
   <meta content="width=device-width, initial-scale=1" name="viewport">
-  <title>BCT Sunburst Chart 04</title>
+  <title>微医用户健康分标签系统</title>
   <link href="https://playground.anychart.com/docs/samples/BCT_Sunburst_Chart_04/iframe" rel="canonical">
   <meta content="Sunburst Chart" name="keywords">
   <meta content="AnyChart - JavaScript Charts designed to be embedded and integrated" name="description">
@@ -94,11 +94,13 @@
 
 
     // set the chart title
-    chart.title().useHtml(true);
-    chart.title("微医用户健康分标签系统");
+    // chart.title().useHtml(true);
+    // chart.title("微医用户健康分标签系统");
 
     // set the container id
     chart.container("container");
+
+    chart.interactivity().selectionMode("none");
 
     // initiate drawing the chart
     chart.draw();
