@@ -30,44 +30,63 @@
 
     var data = [
       {name: "健康分", normal: {fill: "#FFFFFF"}, children: [
-        {name: "Consonants", children: [
-          {name: "m"}, {name: "n"}, {name: "ɲ"},
-          {name: "p"}, {name: "b"}, {name: "t"},
-        ],value: 25},
-        {name: "Vowels", children: [
-          {name: "i"}, {name: "u"}, {name: "e"},
-          {name: "o"}, {name: "ɛ"}, {name: "ɔ"},
-        ],value: 25}, 
-        {name: "Vowels", children: [
-          {name: "i"}, {name: "u"}, {name: "e"},
-        ],value: 25}, 
-        {name: "Vowels", children: [
-          {name: "i"}, {name: "u"}, {name: "e"},
-          {name: "o"}, {name: "ɛ"}, {name: "ɔ"},
-        ],value: 25}, 
-      ],value: 200}
+        {name: "人口属性", normal: {fill: "#016dcc"}, children: [
+          {name: "基本属性", value: 10, normal: {fill: "#4b89d3"}, custom_field: "用户年龄（年龄分层）、性别"}, 
+          {name: "地区属性", value: 10, normal: {fill: "#016dcc"}, custom_field: "省份、城市"},
+          {name: "婚育属性", value: 10, normal: {fill: "#bdcfeb"}, custom_field: "通过账号中是否绑定儿童预估"},
+        ],value: 30},
+        {name: "健康属性", normal: {fill: "#016dcc"}, children: [
+          {name: "生命体征", value: 10, normal: {fill: "#dce4f2"}, custom_field: "用户身高、体重、血压等健康信息"}, 
+          {name: "疾病属性", value: 10, normal: {fill: "#dce4f2"}, custom_field: "用户诊断疾病、现病史、既往病史"},
+          {name: "健康习惯", value: 10, normal: {fill: "#dce4f2"}, custom_field: "用户抽烟、喝酒等与健康相关的生活习惯"},
+        ],value: 30}, 
+        {name: "活跃行为", normal: {fill: "#016dcc"}, children: [
+          {name: "注册属性", value: 6, normal: {fill: "#016dcc"}, custom_field: "用户注册行为标签，注册来源，注册渠道，注册时间等"}, 
+          {name: "访问属性", value: 6, normal: {fill: "#bdcfeb"}, custom_field: "用户浏览、搜索等行为标签"},
+          {name: "业务属性", value: 6, normal: {fill: "#76a2db"}, custom_field: "用户问诊、挂号等医疗行为标签"},
+          {name: "关注属性", value: 6, normal: {fill: "#bdcfeb"}, custom_field: "用户关注行为标签"},
+          {name: "评论属性", value: 6, normal: {fill: "#dce4f2"}, custom_field: "用户评论、点赞等行为标签"},
+        ],value: 30}, 
+        {name: "消费行为", normal: {fill: "#016dcc"}, children: [
+          {name: "会员消费属性", value: 10, normal: {fill: "#dce4f2"}, custom_field: "会员消费频次，消费周期等"}, 
+          {name: "问诊消费属性", value: 10, normal: {fill: "#bdcfeb"}, custom_field: "问诊消费频次，平均价格，消费习惯，订单总量等"},
+          {name: "挂号消费属性", value: 10, normal: {fill: "#76a2db"}, custom_field: "挂号消费频次，平均价格，消费习惯，订单总量等"},
+        ],value: 30}, 
+        {name: "医疗服务偏好", normal: {fill: "#016dcc"}, children: [
+          {name: "就医服务偏好", value: 30, normal: {fill: "#76a2db"}, custom_field: "对问诊、挂号就医服务的个人偏好"}, 
+        ],value: 30}, 
+        {name: "用户关系", normal: {fill: "#016dcc"}, children: [
+          {name: "社交关系", value: 30, normal: {fill: "#9ab9e4"}, custom_field: "通过账号关系抽象出<patient_id,user_id>间社交关系"}, 
+        ],value: 30}, 
+      ],value: 360}
     ];
 
     // create a chart and set the data
     var chart = anychart.sunburst(data, "as-tree");
 
-    chart.innerRadius(100);
+    // set the center content
 
+    chart.level(0).thickness("10%");
+    chart.innerRadius(30);
     var label = anychart.standalones.label();
-    label.text("Company Structure");
+    label.text("健康分");
     label.width("100%");
     label.height("100%");
     label.fontColor("#000000");
-    label.fontSize(12);
+    label.fontSize(14);
     label.fontWeight(600);
     label.hAlign("center");
     label.vAlign("middle");
-
-    // set the center content
     chart.center().content(label);
 
-    chart.tooltip().title("Information");
-    chart.tooltip().format("Manager: {%categoryName} \n{%seriesName}: ${%value}");
+    // chart.tooltip().title("Information");
+    // chart.tooltip().format("Manager: {%categoryName} \n{%seriesName}: ${%value}");
+    chart.tooltip().format("{%name}\n{%custom_field}");
+
+    // configure labels
+    chart.labels().useHtml(true);
+    chart.labels().position("radial");
+    chart.level(1).labels().format("<span style='font-weight:bold'>{%name}</span>");
 
     // set the calculation mode
     chart.calculationMode("parent-dependent");
@@ -76,9 +95,7 @@
 
     // set the chart title
     chart.title().useHtml(true);
-    chart.title("Sunburst: Calculation Mode (ordinal-from-leaves)<br><br>" +
-        "<span style='font-size:12; font-style:italic'>" +
-        "Phonemic System</span>");
+    chart.title("微医用户健康分标签系统");
 
     // set the container id
     chart.container("container");
